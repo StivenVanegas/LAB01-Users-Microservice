@@ -1,6 +1,8 @@
 package edu.eci.UserMicroservice.data;
 
+import edu.eci.UserMicroservice.dto.UserDto;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  *
@@ -14,11 +16,27 @@ public class User {
     private Date created;
 
     public User(String id, String name, String lastName, String email, Date created) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.created = created;
+    }
+    
+    public User(UserDto user){
+        this.id = UUID.randomUUID().toString();
+        this.name = user.getName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.created = user.getCreated();
+    }
+    
+    public User(String id, UserDto user){
+        this.id = id;
+        this.name = user.getName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.created = user.getCreated();
     }
 
     public String getId() {

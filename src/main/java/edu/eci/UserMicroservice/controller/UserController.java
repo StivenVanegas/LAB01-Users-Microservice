@@ -43,13 +43,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody UserDto userDto){
-        return null;
+        User user = new User(userDto);
+        return new ResponseEntity(userService.create(user), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@RequestBody UserDto userDto, @PathVariable String id){
-        //TODO implement this method using UserService
-        return null;
+        User user = new User(id, userDto);
+        return new ResponseEntity(userService.update(user, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
